@@ -4,8 +4,11 @@ using System.Text;
 
 namespace attendanceApp
 {
+
 	public class Navigate
 	{
+		Message messageClass = new Message();
+		Welcome welcomeClass = new Welcome();
 		public enum AppStep
 		{
 			Start,
@@ -15,12 +18,13 @@ namespace attendanceApp
 		}
 
 		public void navigate(AppStep step)
+
 		{
 			switch (step)
 			{
 				case AppStep.Start:
-					Console.WriteLine("Präsenztage 25-4 App");
-					Console.WriteLine("\nEinlogen oder neuen Benutzer erstellen?");
+					Console.WriteLine(messageClass.attendanceAppName);
+					welcomeClass.Start();
 					break;
 				case AppStep.LogIn:
 					// LogIn

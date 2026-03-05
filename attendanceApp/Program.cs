@@ -4,8 +4,8 @@
 	{
 		static void Main(string[] args)
 		{
-			Navigate nav = new Navigate();
-			nav.navigate(Navigate.AppStep.Start);
+			Navigate navigateClass = new Navigate();
+			navigateClass.navigate(Navigate.AppStep.Start);
 		}
 	}
 }
