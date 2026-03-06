@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace attendanceApp
+﻿namespace attendanceApp
 {
-
-	public class Navigate
+	internal class Navigate
 	{
 		Message messageClass = new Message();
 		Welcome welcomeClass = new Welcome();
-		public enum AppStep
+		internal enum AppStep
 		{
 			Start,
 			LogIn,
 			Create,
-			SendPassword
 		}
 
-		public void navigate(AppStep step)
+		internal void navigate(AppStep step)
 
 		{
 			switch (step)
@@ -31,9 +25,6 @@ namespace attendanceApp
 					break;
 				case AppStep.Create:
 					// Create
-					break;
-				case AppStep.SendPassword:
-					// SendPassword
 					break;
 			}
 		}

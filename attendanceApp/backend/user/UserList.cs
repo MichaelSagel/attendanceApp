@@ -1,7 +1,13 @@
 namespace attendanceApp
 {
-    public class UserList
+    internal class UserList
     {
-        public Dictionary<string, UserProfile> userList = new Dictionary<string, UserProfile>(StringComparer.OrdinalIgnoreCase);
+        internal Dictionary<string, UserProfile> userList = new Dictionary<string, UserProfile>(StringComparer.OrdinalIgnoreCase)
+        {
+            { 
+                "test@email.com", 
+                new UserProfile("testName", "test@email.com", "securePassword123") 
+            }
+        };
     }
 }

@@ -1,41 +1,67 @@
 namespace attendanceApp
 {
-    public class NewUser
+    internal class NewUser
     {
 		UserList userListClass = new UserList();
-        public void CreateUser()
+        MainMenu mainMenuClass = new MainMenu();
+        internal void CreateUser()
         {
-            Console.WriteLine("Tippen Sie bitte ihre Name ein:");
-            string userName2;
-
-            Console.WriteLine("Введите ваше имя:");
-            userName2 = Console.ReadLine();
-
-            while (string.IsNullOrWhiteSpace(userName2))
+            string? userName;
+            string? userEmail;
+            string? userPassword;
+            do
             {
-                Console.WriteLine("Имя не может быть пустым. Пожалуйста, введите имя:");
-                userName2 = Console.ReadLine();
-            }
+                Console.Clear();
+                Console.WriteLine("Tippen Sie bitte ihre Name ein:");
+                userName = Console.ReadLine();
 
-                string? userName;
-                do
+                if (string.IsNullOrWhiteSpace(userName))
                 {
-                    Console.WriteLine("Tippen Sie bitte ihre Name ein:");
-                    userName = Console.ReadLine();
+                    Console.WriteLine("Fehler: Der Name darf nicht leer sein oder nur aus Leerzeichen bestehen.");
+                }
+            } while (string.IsNullOrWhiteSpace(userName));
 
-                    if (string.IsNullOrWhiteSpace(userName))
-                    {
-                        Console.WriteLine("Fehler: Der Name darf nicht leer sein oder nur aus Leerzeichen bestehen.");
-                    }
-                } while (string.IsNullOrWhiteSpace(userName));
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Tippen Sie bitte ihre Email ein:");
+                userEmail = Console.ReadLine();
 
-            //TODO: Finish
+                if (string.IsNullOrWhiteSpace(userEmail))
+                {
+                    Console.WriteLine("Fehler: Der Email darf nicht leer sein oder nur aus Leerzeichen bestehen.");
+                }
+            } while (string.IsNullOrWhiteSpace(userEmail));
+            
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Tippen Sie bitte ihre Password ein:");
+                userPassword = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(userPassword))
+                {
+                    Console.WriteLine("Fehler: Der Password darf nicht leer sein oder nur aus Leerzeichen bestehen.");
+                }
+            } while (string.IsNullOrWhiteSpace(userPassword));
+
             UserProfile newUserProfile = new UserProfile(
                 userName,
-                "sfdfg",
-                "dfgdg");
+                userEmail,
+                userPassword);
 
-                bool isAdded = userListClass.userList.TryAdd(newUserProfile.email, newUserProfile);
+            bool isAdded = userListClass.userList.TryAdd(newUserProfile.email, newUserProfile);
+
+            if(!isAdded)
+            {
+                Console.Clear();
+                Console.WriteLine("Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.");
+                Task.Delay(5000).Wait();
+                CreateUser();
+            } else
+            {
+                mainMenuClass.UserMenu(userListClass.userList[newUserProfile.email]);
+            }
         }
     }
 }

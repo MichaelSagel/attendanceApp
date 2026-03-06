@@ -1,18 +1,19 @@
 namespace attendanceApp
 {
-    public class Welcome
+    internal class Welcome
     {
 		Message messageClass = new Message();
+		NewUser newUserClass = new NewUser();
+		Login loginClass = new Login();
 
-        public enum EStartState
+        internal enum EStartState
 		{
-            None,
 			Login,
 			CreateUser,
 		}
 
-        EStartState startState = EStartState.None;
-        public void Start()
+        EStartState startState = EStartState.Login;
+        internal void Start()
         {
 		    Console.WriteLine(messageClass.attendanceAppName);
             
@@ -46,10 +47,10 @@ namespace attendanceApp
             switch(startState)
             {
                 case EStartState.Login:
-                    Console.WriteLine("Login");
+                    loginClass.SignIn();
                     break;
                 case EStartState.CreateUser:
-                    Console.WriteLine("CreateUser");
+					newUserClass.CreateUser();
                     break;
                 default:
                     Start();

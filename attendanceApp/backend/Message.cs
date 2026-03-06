@@ -1,7 +1,7 @@
 ﻿namespace attendanceApp
 {
-	public class Message
+	internal class Message
 	{
-		public string attendanceAppName = "Präsenztage 25-4 App";
+		internal string attendanceAppName = "Präsenztage 25-4 App";
 	}
 }
