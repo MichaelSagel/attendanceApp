@@ -3,8 +3,6 @@ namespace attendanceApp
     internal class Welcome
     {
 		Message messageClass = new Message();
-		NewUser newUserClass = new NewUser();
-		Login loginClass = new Login();
 
         internal enum EStartState
 		{
@@ -14,9 +12,7 @@ namespace attendanceApp
 
         EStartState startState = EStartState.Login;
         internal void Start()
-        {
-		    Console.WriteLine(messageClass.attendanceAppName);
-            
+        {   
 			bool isChosen = false;
 
 			Console.CursorVisible = false;
@@ -24,6 +20,7 @@ namespace attendanceApp
 			while (!isChosen)
 			{
 				Console.Clear();
+		    	Console.WriteLine(messageClass.attendanceAppName);
 				Console.WriteLine("\nEinlogen oder neuen Benutzer erstellen?");
 				Console.WriteLine($"{(startState == EStartState.Login ? "\x1b[4mEinlogen\x1b[0m" : "Einlogen")}	" +
 					$"{(startState == EStartState.CreateUser ? "\x1b[4mRegestrieren\x1b[0m" : "Regestrieren")}");
@@ -47,10 +44,10 @@ namespace attendanceApp
             switch(startState)
             {
                 case EStartState.Login:
-                    loginClass.SignIn();
+					Navigate.navigate(Navigate.AppStep.Login);
                     break;
                 case EStartState.CreateUser:
-					newUserClass.CreateUser();
+					Navigate.navigate(Navigate.AppStep.Create);
                     break;
                 default:
                     Start();

@@ -3,7 +3,7 @@ namespace attendanceApp
     internal class Login
     {
 		UserList userListClass = new UserList();
-        MainMenu mainMenuClass = new MainMenu();
+		Message messageClass = new Message();
 
         string? userEmail;
         string? userPassword;
@@ -13,6 +13,7 @@ namespace attendanceApp
             do
             {
                 Console.Clear();
+		        Console.WriteLine(messageClass.attendanceAppName);
                 Console.WriteLine("Tippen Sie bitte ihre Email ein:");
                 userEmail = Console.ReadLine();
             } while (string.IsNullOrWhiteSpace(userEmail) || !userListClass.userList.ContainsKey(userEmail));
@@ -20,11 +21,13 @@ namespace attendanceApp
             do
             {
                 Console.Clear();
+		        Console.WriteLine(messageClass.attendanceAppName);
                 Console.WriteLine("Tippen Sie bitte ihre Password ein:");
                 userPassword = Console.ReadLine();
             } while (string.IsNullOrWhiteSpace(userPassword) || userListClass.userList[userEmail!].password != userPassword);
 
-            mainMenuClass.UserMenu(userListClass.userList[userEmail]);
+            Session.CurrentUser = userListClass.userList[userEmail];
+			Navigate.navigate(Navigate.AppStep.MainMenu);
         }
     }
 }

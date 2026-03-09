@@ -3,7 +3,7 @@ namespace attendanceApp
     internal class NewUser
     {
 		UserList userListClass = new UserList();
-        MainMenu mainMenuClass = new MainMenu();
+		Message messageClass = new Message();
         internal void CreateUser()
         {
             string? userName;
@@ -12,6 +12,7 @@ namespace attendanceApp
             do
             {
                 Console.Clear();
+		        Console.WriteLine(messageClass.attendanceAppName);
                 Console.WriteLine("Tippen Sie bitte ihre Name ein:");
                 userName = Console.ReadLine();
 
@@ -24,6 +25,7 @@ namespace attendanceApp
             do
             {
                 Console.Clear();
+		        Console.WriteLine(messageClass.attendanceAppName);
                 Console.WriteLine("Tippen Sie bitte ihre Email ein:");
                 userEmail = Console.ReadLine();
 
@@ -36,6 +38,7 @@ namespace attendanceApp
             do
             {
                 Console.Clear();
+		        Console.WriteLine(messageClass.attendanceAppName);
                 Console.WriteLine("Tippen Sie bitte ihre Password ein:");
                 userPassword = Console.ReadLine();
 
@@ -60,7 +63,8 @@ namespace attendanceApp
                 CreateUser();
             } else
             {
-                mainMenuClass.UserMenu(userListClass.userList[newUserProfile.email]);
+                Session.CurrentUser = newUserProfile;
+				Navigate.navigate(Navigate.AppStep.MainMenu);
             }
         }
     }
