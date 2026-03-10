@@ -25,8 +25,7 @@ Entwicklung einer C#-Konsolenanwendung zur effizienten Verwaltung von Präsenzta
 *   Validierung von Datumseingaben.
 *   Statusübersicht der besuchten Tage.
 
-> **[SCREENSHOT: PROJEKTPLAN / MIRO ÜBERSICHT HIER EINFÜGEN]**
-> *Beschreibung: Erste Skizze der Anforderungen und der geplanten Features.*
+**<img width="655" height="339" alt="image" src="https://github.com/user-attachments/assets/a51c5f37-1b54-4571-b125-49936ee907c1" />**
 
 ---
 
@@ -51,10 +50,6 @@ Das Projekt wurde in einem Zeitraum von 7 Tagen mit einem täglichen Arbeitspens
 Die gesamte Programmlogik wurde vorab visuell geplant, um zirkuläre Aufrufe zu vermeiden.
 
 **Link zum Board:** [Projekt-Logik auf Miro ansehen](https://miro.com)
-
-> **[SCREENSHOT: FLOWCHART / NASSI-SCHNEIDERMAN DIAGRAMM HIER EINFÜGEN]**
-> *Beschreibung: Darstellung des Programmflusses von der Authentifizierung bis zur Hauptmenü-Steuerung.*
-
 ---
 
 ## 5. Implementierung & Umsetzung
@@ -63,8 +58,14 @@ Hier wird die schrittweise Umsetzung der technischen Kernkomponenten erläutert.
 ### Navigationskonzept (`Navigate.cs`)
 Statt die Klassen direkt untereinander aufzurufen, wird ein **State-Management** genutzt. Über das Enum `AppStep` wird zentral gesteuert, welche Ansicht geladen wird. Dies verhindert einen StackOverflow.
 
-> **[SCREENSHOT: CODE-SNIPPET NAVIGATE-LOGIK HIER EINFÜGEN]**
-> *Erläuterung: Der Switch-Case-Block, der die verschiedenen App-States (Login, Menu, AddDate) steuert.*
+**<img width="366" height="335" alt="image" src="https://github.com/user-attachments/assets/f998fb08-e876-4fa0-81a0-51f2452ae3b0" />**
+**<img width="566" height="672" alt="image" src="https://github.com/user-attachments/assets/f33db61b-cb50-47e7-8277-8c11d4e9c007" />**
+Der `switch-case`-Block in der Klasse `Navigate` steuert den zentralen Programmfluss:
+
+* **Zweck:** Fungiert als **Dispatcher**, der den aktuellen Status (`AppStep`) auswertet.
+* **Logik:** Je nach Zustand wird die passende Klasse aufgerufen und die entsprechende Methode (`SignIn`, `UserMenu`, etc.) ausgeführt.
+* **Steuerung:** Ermöglicht den sauberen Wechsel zwischen Startseite, Login, Registrierung und Hauptmenü.
+
 
 ### Interaktive Konsole (`Welcome.cs` / `MainMenu.cs`)
 Um die Benutzerfreundlichkeit zu erhöhen, wurde auf `Console.ReadLine` verzichtet. Stattdessen wird `Console.ReadKey(true)` verwendet, um Menüpunkte mit Pfeiltasten auszuwählen.
@@ -83,8 +84,12 @@ Um die Benutzerfreundlichkeit zu erhöhen, wurde auf `Console.ReadLine` verzicht
 Bei der manuellen Eingabe kam es oft zu Abstürzen (`FormatException`).
 **Lösung:** Einsatz von `DateTime.TryParseExact` mit dem festen Format `"dd.MM.yyyy"`. 
 
-> **[SCREENSHOT: DEBUGGING / BREAKPOINT BEI DATUMSPRÜFUNG HIER EINFÜGEN]**
-> *Beschreibung: Hier sieht man die Fehlerbehandlung im Debugger, wenn ein falsches Format eingegeben wird.*
+**<img width="1389" height="470" alt="image" src="https://github.com/user-attachments/assets/7b0074ff-aeae-4e82-92b4-e178acf4a2c7" />**
+Die Methode `addAttendaceDay` übernimmt die Eingabe und Validierung von Datumsangaben:
+
+* **Eingabe-Validierung:** Nutzt `DateTime.TryParseExact`, um sicherzustellen, dass das Datum exakt im Format `TT.MM.JJJJ` eingegeben wird.
+* **Fehlerbehandlung:** Bei einem falschen Format wird eine Fehlermeldung ausgegeben und die Methode rekursiv erneut aufgerufen.
+* **Verarbeitung:** Nur bei validem Datum wird die Logik zur Markierung der Anwesenheit in der Klasse `Date` angestoßen.
 
 ### Problem: Mehrfacheinträge
 Ein Nutzer konnte denselben Tag mehrfach als anwesend markieren.
