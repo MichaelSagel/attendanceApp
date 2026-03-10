@@ -65,7 +65,14 @@ namespace attendanceApp {
 					addAttendaceDayClass.addAttendaceDay();
                     break;
                 case EMainMenuState.CheckStatusAttendancedDays:
+                    Console.Clear();
+                    Console.WriteLine(messageClass.attendanceAppName);
+                    Console.WriteLine($"{Session.CurrentUser.name} sie müssen " +
+                    $"noch {Session.CurrentUser.presentDays - Session.CurrentUser.visitDates.Count} Tage Präsenztraining vor Ort absolvieren.");
+                    Console.WriteLine("\nTage, an denen Sie das Büro besucht haben:");
                     Session.CurrentUser.visitDates.ForEach(d => Console.WriteLine(d.ToString("dd.MM.yyyy")));
+                    Console.WriteLine($"{Session.CurrentUser.name} sie müssen " +
+                    $"noch {Session.CurrentUser.presentDays - Session.CurrentUser.visitDates.Count} Tage Präsenztraining vor Ort absolvieren.");
                     break;
                 default:
                     UserMenu();

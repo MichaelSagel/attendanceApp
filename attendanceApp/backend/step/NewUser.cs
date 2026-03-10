@@ -59,7 +59,7 @@ namespace attendanceApp
             {
                 Console.Clear();
                 Console.WriteLine("Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.");
-                Task.Delay(5000).Wait();
+                Task.Delay(4000).Wait();
                 CreateUser();
             } else
             {

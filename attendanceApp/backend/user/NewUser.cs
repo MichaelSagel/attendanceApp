@@ -7,7 +7,7 @@ namespace attendanceApp
             internal required string name { get; set; }
             internal required string email { get; set; }
             internal required string password { get; set; }
-            internal const int presentDays = 134; 
+            internal readonly int presentDays = 134; 
             internal List<DateTime> visitDates { get; set; } = new List<DateTime>();
 
                 [SetsRequiredMembers]

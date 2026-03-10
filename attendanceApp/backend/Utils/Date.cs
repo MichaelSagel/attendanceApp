@@ -10,14 +10,14 @@ namespace attendanceApp
                 {
                     Console.Clear();
                     Console.WriteLine("Dieses Datum wurde bereits hinzugefügt");
-                    Task.Delay(4000).Wait();
+                    Task.Delay(3000).Wait();
 					Navigate.navigate(Navigate.AppStep.MainMenu);
                 }
                 else
                 {
                     Session.CurrentUser!.visitDates.Add(date);
                     Console.WriteLine("Datum hinzugefügt");
-                    Task.Delay(4000).Wait();
+                    Task.Delay(3000).Wait();
 					Navigate.navigate(Navigate.AppStep.MainMenu);
                 }
             }
