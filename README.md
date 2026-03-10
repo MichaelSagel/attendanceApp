@@ -60,6 +60,7 @@ Statt die Klassen direkt untereinander aufzurufen, wird ein **State-Management**
 
 **<img width="366" height="335" alt="image" src="https://github.com/user-attachments/assets/f998fb08-e876-4fa0-81a0-51f2452ae3b0" />**
 **<img width="566" height="672" alt="image" src="https://github.com/user-attachments/assets/f33db61b-cb50-47e7-8277-8c11d4e9c007" />**
+
 Der `switch-case`-Block in der Klasse `Navigate` steuert den zentralen Programmfluss:
 
 * **Zweck:** Fungiert als **Dispatcher**, der den aktuellen Status (`AppStep`) auswertet.
@@ -85,6 +86,7 @@ Bei der manuellen Eingabe kam es oft zu Abstürzen (`FormatException`).
 **Lösung:** Einsatz von `DateTime.TryParseExact` mit dem festen Format `"dd.MM.yyyy"`. 
 
 **<img width="1389" height="470" alt="image" src="https://github.com/user-attachments/assets/7b0074ff-aeae-4e82-92b4-e178acf4a2c7" />**
+
 Die Methode `addAttendaceDay` übernimmt die Eingabe und Validierung von Datumsangaben:
 
 * **Eingabe-Validierung:** Nutzt `DateTime.TryParseExact`, um sicherzustellen, dass das Datum exakt im Format `TT.MM.JJJJ` eingegeben wird.
